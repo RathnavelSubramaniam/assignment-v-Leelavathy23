@@ -1,0 +1,62 @@
+---
+title: "Unit-5 Assignment"
+author: "Leelavathy.L"
+date: "2022-11-29"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+1. Construct regular expressions to match words that: 
+a. Start and end with the same character. 
+```{r}
+x<-c("high","starts","level","trusted")
+str_view(x, "^(.).*\\1$")
+```
+b. Contain a repeated pair of letters (e.g., “church” contains “ch” repeated twice). 
+```{r}
+x<-c("church","starts","laalaa","tasta")
+str_view(x, "(..).*\\1")
+```
+c. Contain one letter repeated in at least three places (e.g., “eleven” contains three “e”s).
+
+```{r}
+x<-c("temperature","starts","assasination","trusted")
+str_view(x, "(.).+\\1.+\\1")
+```
+2. How would you match the sequence "'\?
+
+```{r}
+x <- "a \"'\\b"
+writeLines(x)
+str_view(x, "\\\"'\\\\")
+
+```
+3. Use the appropriate lubridate function to parse each of the following dates: 
+```{r}
+d1 <- "January 1, 2010"
+mdy(d1)
+```
+```{r}
+d2 <- "2015-Mar-07"
+ymd(d2)
+```
+```{r}
+d3 <- "06-Jun-2017" 
+dmy(d3)
+```
+```{r}
+d4 <- c("August 19 (2015)", "July 1 (2015)") 
+mdy(d4)
+```
+```{r}
+d5 <- "12/30/14" # Dec 30, 2014
+mdy(d5)
+```
+4. What happens if you parse a string that contains invalid dates? 
+  Answer: It produces an NA and a warning message
+```{r}
+ymd(c("2010-10-10", "bananas"))
+```
+
